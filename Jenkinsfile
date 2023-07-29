@@ -26,7 +26,7 @@ pipeline{
 			steps{
 				script{
 				
-					sh 'kubectl rollout restart deploy d1 -n default'
+					sh 'kubectl rollout restart deploy hw3-deployment -n default'
 				}
 			}
 		}
