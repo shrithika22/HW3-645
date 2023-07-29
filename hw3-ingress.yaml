@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    field.cattle.io/publicEndpoints: >-
+      [{"addresses":["52.201.222.220"],"port":80,"protocol":"HTTP","serviceName":"default:hw3-deployment","ingressName":"default:hw3-ingress","hostname":"hw3.form.com","path":"/Getstudents","allNodes":false}]
+  creationTimestamp: '2023-07-29T23:00:48Z'
+  generation: 1
+  managedFields:
+    - apiVersion: networking.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:field.cattle.io/publicEndpoints: {}
+        f:spec:
+          f:rules: {}
+      manager: agent
+      operation: Update
+      time: '2023-07-29T23:01:23Z'
+    - apiVersion: networking.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:loadBalancer:
+            f:ingress: {}
+      manager: nginx-ingress-controller
+      operation: Update
+      subresource: status
+      time: '2023-07-29T23:01:23Z'
+  name: hw3-ingress
+  namespace: default
+  resourceVersion: '57079'
+  uid: c6bbdbe8-0b11-4c33-891f-3c4627257112
+spec:
+  rules:
+    - host: hw3.form.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: hw3-deployment
+                port:
+                  number: 8080
+            path: /Getstudents
+            pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+      - ip: 52.201.222.220
