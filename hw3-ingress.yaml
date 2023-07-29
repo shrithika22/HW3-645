@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hw3-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx # Use the Nginx Ingress controller
+spec:
+  rules:
+  - host: hw3.form.com  # Replace this with your valid DNS name
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: default:hw3-deployment-nodeport  # Replace this with the name of your HW3 Service
+            port:
+              number: 30466      # Replace this with the port your HW3 Service is using
